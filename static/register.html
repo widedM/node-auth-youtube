@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 	
@@ -15,9 +15,11 @@
 		
 		<!-- Style -->
 		<link rel="stylesheet" href="css/style.css">
-		<title>Login</title>
+
+		<title>Register</title>
 	</head>
 	<body>
+
 		<div class="content">
 			<div class="container">
 			  <div class="row">
@@ -28,10 +30,10 @@
 				  <div class="row justify-content-center">
 					<div class="col-md-8">
 					  <div class="mb-4">
-					  <h3>Sign In</h3>
-					  <p class="mb-4">Please sign in to get access to the platforme !</p>
+					  <h3>Sign Up</h3>
+					  <p class="mb-4">Please sign up to get access to the platforme !</p>
 					</div>
-					<form action="home.html" id="login">
+					<form action="index.html" id="reg-form">
 					  <div class="form-group first">
 						<label for="username">Username</label>
 						<input type="text" class="form-control" id="username">
@@ -75,23 +77,17 @@
 			  </div>
 			</div>
 		  </div>
-		
-		  
-			<script src="js/jquery-3.3.1.min.js"></script>
-			<script src="js/popper.min.js"></script>
-			<script src="js/bootstrap.min.js"></script>
-			<script src="js/main.js"></script>
 
 		<script>
-			const form = document.getElementById('login')
-			form.addEventListener('submit', login)
+			const form = document.getElementById('reg-form')
+			form.addEventListener('submit', registerUser)
 
-			async function login(event) {
+			async function registerUser(event) {
 				event.preventDefault()
 				const username = document.getElementById('username').value
 				const password = document.getElementById('password').value
 
-				const result = await fetch('/api/login', {
+				const result = await fetch('/api/register', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'
@@ -104,14 +100,16 @@
 
 				if (result.status === 'ok') {
 					// everythign went fine
-					console.log('Got the token: ', result.data)
-					localStorage.setItem('token', result.data)
 					alert('Success')
-					window.location.href="/home.html";
+					window.location.href="/index.html";
 				} else {
 					alert(result.error)
 				}
 			}
 		</script>
+		    <script src="js/jquery-3.3.1.min.js"></script>
+			<script src="js/popper.min.js"></script>
+			<script src="js/bootstrap.min.js"></script>
+			<script src="js/main.js"></script>
 	</body>
 </html>
